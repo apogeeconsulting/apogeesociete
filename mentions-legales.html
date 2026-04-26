@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mentions légales — Apogée Société</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#0A0A0A;
+  --b2:#141414;
+  --line:rgba(255,255,255,0.09);
+  --muted:#5C5C5C;
+  --off:#F0EDE8;
+  --white:#FFFFFF;
+}
+body{font-family:'Jost',sans-serif;background:var(--black);color:var(--white);overflow:hidden;height:100vh;font-weight:300}
+a{text-decoration:none;color:var(--white)}
+a:hover{opacity:.7}
+
+/* TICKER */
+.ticker{background:var(--white);height:28px;overflow:hidden;display:flex;align-items:center;position:fixed;top:0;left:0;right:0;z-index:400}
+.ticker-track{display:flex;white-space:nowrap;animation:tick 28s linear infinite}
+.ti{font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--black);font-weight:400;padding:0 2.5rem;border-right:1px solid rgba(0,0,0,.1)}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* NAV */
+nav{position:fixed;top:28px;left:0;right:0;z-index:300;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;height:60px;background:var(--black);border-bottom:1px solid var(--line)}
+.logo{font-family:'Cormorant Garamond',serif;font-size:.75rem;letter-spacing:.32em;text-transform:uppercase;color:var(--white);font-weight:400}
+.nav-links{list-style:none;display:flex;gap:2.5rem}
+.nav-links a{font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);transition:color .2s}
+.nav-links a:hover{color:var(--white)}
+.lang-btn{background:none;border:1px solid rgba(255,255,255,.2);color:var(--muted);font-family:'Jost',sans-serif;font-size:.58rem;letter-spacing:.18em;padding:5px 12px;cursor:pointer;transition:all .2s}
+.lang-btn:hover{border-color:rgba(255,255,255,.5);color:var(--white)}
+
+/* LAYOUT */
+.page{margin-top:88px;height:calc(100vh - 88px);display:grid;grid-template-columns:1fr 1fr}
+
+/* GAUCHE */
+.hero{border-right:1px solid var(--line);padding:4rem 3rem;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+.wm{position:absolute;bottom:2rem;left:0;right:0;font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,8vw,7rem);font-weight:300;color:rgba(255,255,255,.06);line-height:1;pointer-events:none;user-select:none;white-space:nowrap;letter-spacing:.15em;text-align:center}
+.eyebrow{font-size:.58rem;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);margin-bottom:1.5rem;display:block}
+h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3.5rem,6vw,6.5rem);font-weight:300;line-height:.9;letter-spacing:-.02em;position:relative;z-index:1}
+h1 em{font-style:italic;color:var(--off)}
+.hero-sub{font-size:.85rem;color:var(--muted);line-height:1.85;font-weight:200;max-width:360px;border-left:1px solid var(--line);padding-left:1.5rem;position:relative;z-index:1}
+.hero-bottom{position:relative;z-index:1}
+
+/* DROITE */
+.panels{position:relative;background:var(--b2);display:flex;flex-direction:column;height:100%}
+.panel{flex:1;overflow-y:auto;padding:2.5rem 3rem;padding-bottom:5rem}
+.panel::-webkit-scrollbar{width:3px}
+.panel::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1)}
+
+/* articles */
+.article{padding-bottom:2.5rem;margin-bottom:2.5rem;border-bottom:1px solid var(--line);scroll-margin-top:2.5rem}
+.article:last-child{border-bottom:none;margin-bottom:0}
+.art-header{display:flex;align-items:baseline;gap:1.2rem;margin-bottom:1.2rem}
+.art-n{font-family:'Cormorant Garamond',serif;font-size:2rem;color:rgba(255,255,255,.08);font-weight:300;line-height:1;flex-shrink:0}
+.art-title{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:400;color:var(--white);line-height:1.2}
+.art-sub{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:1.5rem 0 .7rem;font-weight:400;display:block}
+p{font-size:.85rem;color:var(--muted);line-height:1.85;font-weight:200;margin-bottom:.9rem}
+p:last-child{margin-bottom:0}
+p strong{color:rgba(255,255,255,.65);font-weight:400}
+
+/* grille infos */
+.grid-items{display:flex;flex-direction:column;margin:.8rem 0}
+.gi{display:grid;grid-template-columns:180px 1fr;gap:1rem;padding:.8rem 0;border-top:1px solid var(--line);align-items:baseline}
+.gi:last-child{border-bottom:1px solid var(--line)}
+.gi-name{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.35);font-weight:400}
+.gi-val{font-size:.83rem;color:var(--muted);line-height:1.6;font-weight:200}
+
+/* liste */
+.blist{list-style:none;display:flex;flex-direction:column;gap:.5rem;margin:.7rem 0}
+.blist li{font-size:.83rem;color:var(--muted);line-height:1.7;font-weight:200;padding-left:1rem;position:relative}
+.blist li::before{content:'';position:absolute;left:0;top:.7rem;width:4px;height:1px;background:rgba(255,255,255,.2)}
+
+/* ANIM */
+@keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.eyebrow{animation:up .7s .1s ease both}
+h1{animation:up .8s .2s ease both}
+.hero-sub{animation:up .7s .35s ease both}
+
+@media(max-width:840px){
+  body{overflow:auto}
+  .page{grid-template-columns:1fr;height:auto}
+  .hero{border-right:none;border-bottom:1px solid var(--line);height:auto;padding:3rem 1.5rem}
+  .panel{height:auto;padding:2rem 1.5rem}
+  nav{padding:0 1.5rem}
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="ti">Mentions légales</span>
+    <span class="ti">Apogée Société</span>
+    <span class="ti">RCS 980 327 670 000 17</span>
+    <span class="ti">TVA FR58980327670</span>
+    <span class="ti">Mentions légales</span>
+    <span class="ti">Apogée Société</span>
+    <span class="ti">RCS 980 327 670 000 17</span>
+    <span class="ti">TVA FR58980327670</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="https://www.apogee-societe.com">Apogée Société</a>
+  <ul class="nav-links">
+    <li><a href="https://www.apogee-societe.com">Accueil</a></li>
+    <li><a href="https://www.apogee-societe.com/services">Services</a></li>
+    <li><a href="https://www.apogee-societe.com/recrutement">Recrutement</a></li>
+  </ul>
+  <button class="lang-btn" id="lang-btn">EN</button>
+</nav>
+
+<div class="page">
+
+  <!-- GAUCHE -->
+  <div class="hero">
+    <div class="wm" aria-hidden="true">LÉGAL</div>
+    <div>
+      <span class="eyebrow">Informations légales</span>
+      <h1>Mentions<br><em>légales</em></h1>
+    </div>
+    <p class="hero-sub">Apogée Société — Apogée Consulting<br>16 rue Émile Baudot, 91120 Palaiseau</p>
+    <div class="hero-bottom"></div>
+  </div>
+
+  <!-- DROITE -->
+  <div class="panels">
+    <div class="panel">
+
+      <!-- 1. ENTREPRISE -->
+      <div class="article" id="art1">
+        <div class="art-header">
+          <span class="art-n">01</span>
+          <span class="art-title">Informations sur l'entreprise</span>
+        </div>
+        <div class="grid-items">
+          <div class="gi"><span class="gi-name">Raison sociale</span><span class="gi-val">Apogée Société (Apogée Consulting)</span></div>
+          <div class="gi"><span class="gi-name">Adresse</span><span class="gi-val">16 rue Émile Baudot, 91120 Palaiseau, France</span></div>
+          <div class="gi"><span class="gi-name">Téléphone</span><span class="gi-val">07 66 54 08 03</span></div>
+          <div class="gi"><span class="gi-name">Email</span><span class="gi-val">contact@apogee-societe.com</span></div>
+          <div class="gi"><span class="gi-name">RCS</span><span class="gi-val">980 327 670 000 17</span></div>
+          <div class="gi"><span class="gi-name">TVA intracommunautaire</span><span class="gi-val">FR58980327670</span></div>
+        </div>
+      </div>
+
+      <!-- 2. RESPONSABLE -->
+      <div class="article" id="art2">
+        <div class="art-header">
+          <span class="art-n">02</span>
+          <span class="art-title">Responsable de la publication</span>
+        </div>
+        <div class="grid-items">
+          <div class="gi"><span class="gi-name">Responsable</span><span class="gi-val">Fitte-Duval Gaëlle</span></div>
+        </div>
+      </div>
+
+      <!-- 3. HEBERGEUR -->
+      <div class="article" id="art3">
+        <div class="art-header">
+          <span class="art-n">03</span>
+          <span class="art-title">Hébergeur</span>
+        </div>
+        <div class="grid-items">
+          <div class="gi"><span class="gi-name">Société</span><span class="gi-val">1&1 Internet SARL</span></div>
+          <div class="gi"><span class="gi-name">Adresse</span><span class="gi-val">7 place de la Gare, FR-57200 Sarreguemines</span></div>
+          <div class="gi"><span class="gi-name">Téléphone</span><span class="gi-val">+33 9 70 80 89 11</span></div>
+          <div class="gi"><span class="gi-name">Email</span><span class="gi-val">hostmaster@1and1.fr</span></div>
+        </div>
+      </div>
+
+      <!-- 4. PROPRIETE INTELLECTUELLE -->
+      <div class="article" id="art4">
+        <div class="art-header">
+          <span class="art-n">04</span>
+          <span class="art-title">Propriété intellectuelle</span>
+        </div>
+        <p>L'ensemble des contenus du site — textes, images, vidéos, graphiques, logos, icônes, fichiers audio — est protégé par les lois sur les droits d'auteur et la propriété intellectuelle. Ces contenus sont la propriété exclusive d'Apogée Société ou sont utilisés sous licence.</p>
+        <span class="art-sub">Utilisations autorisées</span>
+        <ul class="blist">
+          <li>Naviguer sur le site et visualiser son contenu.</li>
+          <li>Télécharger et imprimer des copies à des fins personnelles et non commerciales.</li>
+          <li>Partager du contenu via les fonctionnalités de partage social disponibles sur le site.</li>
+        </ul>
+        <span class="art-sub">Utilisations interdites</span>
+        <ul class="blist">
+          <li>Copier, reproduire, distribuer ou publier le contenu à des fins commerciales sans autorisation écrite préalable.</li>
+          <li>Modifier, altérer ou créer des œuvres dérivées sans autorisation.</li>
+          <li>Utiliser le contenu de manière à porter atteinte aux droits de propriété intellectuelle d'Apogée Société ou de tiers.</li>
+          <li>Utiliser le contenu de manière illégale, diffamatoire, frauduleuse ou contraire à l'éthique.</li>
+        </ul>
+        <p style="margin-top:1rem">Toute demande d'autorisation doit être adressée à <strong>contact@apogee-societe.com</strong>. Apogée Société se réserve le droit de refuser ou de restreindre toute autorisation à sa discrétion.</p>
+      </div>
+
+      <!-- 5. MARQUES -->
+      <div class="article" id="art5">
+        <div class="art-header">
+          <span class="art-n">05</span>
+          <span class="art-title">Marques déposées</span>
+        </div>
+        <p>Les marques, logos et noms de produits affichés sur ce site sont des marques déposées d'Apogée Société ou de tiers. Aucune utilisation n'est autorisée sans consentement écrit préalable du groupe Apogée Société ou des détenteurs légaux.</p>
+      </div>
+
+      <!-- 6. CGU -->
+      <div class="article" id="art6">
+        <div class="art-header">
+          <span class="art-n">06</span>
+          <span class="art-title">Conditions générales d'utilisation</span>
+        </div>
+        <p>Nous respectons le principe d'équité et d'égalité dans la réservation de nos services, sans discrimination basée sur la race, la religion, le sexe, l'âge ou toute autre caractéristique protégée par la loi.</p>
+        <p>Notre politique de réservation vise à offrir à chacun la même opportunité de profiter de nos services, dans un processus transparent, accessible et sécurisé, dans le respect de la diversité.</p>
+      </div>
+
+      <!-- 7. RESPONSABILITE -->
+      <div class="article" id="art7">
+        <div class="art-header">
+          <span class="art-n">07</span>
+          <span class="art-title">Clause de non-responsabilité</span>
+        </div>
+        <p>Apogée Société ne saurait être tenu responsable des inexactitudes ou omissions dans les informations diffusées sur ce site, ni des dommages résultant de l'utilisation de ces informations.</p>
+        <p>Les liens vers des sites tiers sont fournis à titre informatif. Apogée Société n'assume aucune responsabilité quant au contenu de ces sites externes et ne saurait être tenu responsable des dommages découlant de leur consultation.</p>
+      </div>
+
+      <!-- 8. REVISIONS -->
+      <div class="article" id="art8">
+        <div class="art-header">
+          <span class="art-n">08</span>
+          <span class="art-title">Révisions</span>
+        </div>
+        <p>Apogée Société se réserve le droit de réviser ces mentions légales à tout moment. Les modifications sont effectives dès leur publication sur le site. Nous encourageons nos utilisateurs à consulter régulièrement cette page.</p>
+        <p>Pour toute question : <strong>contact@apogee-societe.com</strong></p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+const T = {
+  fr: {
+    eyebrow:'Informations légales',
+    h1:'Mentions<br><em>légales</em>',
+    heroSub:'Apogée Société — Apogée Consulting<br>16 rue Émile Baudot, 91120 Palaiseau',
+    titles:['Informations sur l\'entreprise','Responsable de la publication','Hébergeur','Propriété intellectuelle','Marques déposées','Conditions générales d\'utilisation','Clause de non-responsabilité','Révisions']
+  },
+  en: {
+    eyebrow:'Legal information',
+    h1:'Legal<br><em>notice</em>',
+    heroSub:'Apogée Société — Apogée Consulting<br>16 rue Émile Baudot, 91120 Palaiseau',
+    titles:['Company information','Publication manager','Hosting provider','Intellectual property','Trademarks','Terms of use','Disclaimer','Revisions']
+  }
+};
+let lang='fr';
+document.getElementById('lang-btn').addEventListener('click',()=>{
+  lang=lang==='fr'?'en':'fr';
+  const t=T[lang];
+  document.getElementById('lang-btn').textContent=lang==='fr'?'EN':'FR';
+  document.querySelector('.eyebrow').textContent=t.eyebrow;
+  document.querySelector('h1').innerHTML=t.h1;
+  document.querySelector('.hero-sub').innerHTML=t.heroSub;
+  document.querySelectorAll('.art-title').forEach((el,i)=>el.textContent=t.titles[i]);
+});
+</script>
+</body>
+</html>
