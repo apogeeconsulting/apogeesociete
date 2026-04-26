@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recrutement — Apogée Société</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#0A0A0A;
+  --b2:#141414;
+  --line:rgba(255,255,255,0.09);
+  --muted:#5C5C5C;
+  --off:#F0EDE8;
+  --white:#FFFFFF;
+}
+body{font-family:'Jost',sans-serif;background:var(--black);color:var(--white);overflow:hidden;height:100vh;font-weight:300}
+
+/* TICKER */
+.ticker{background:var(--white);height:28px;overflow:hidden;display:flex;align-items:center;position:fixed;top:0;left:0;right:0;z-index:400}
+.ticker-track{display:flex;white-space:nowrap;animation:tick 28s linear infinite}
+.ti{font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--black);font-weight:400;padding:0 2.5rem;border-right:1px solid rgba(0,0,0,.1)}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* NAV */
+nav{position:fixed;top:28px;left:0;right:0;z-index:300;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;height:60px;background:var(--black);border-bottom:1px solid var(--line)}
+.logo{font-family:'Cormorant Garamond',serif;font-size:.75rem;letter-spacing:.32em;text-transform:uppercase;color:var(--white);text-decoration:none;font-weight:400}
+.nav-links{list-style:none;display:flex;gap:2.5rem}
+.nav-links a{font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--white)}
+
+/* LAYOUT */
+.page{margin-top:88px;height:calc(100vh - 88px);display:grid;grid-template-columns:1fr 1fr}
+
+/* HERO gauche */
+.hero{border-right:1px solid var(--line);padding:4rem 3rem;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+.wm{position:absolute;bottom:-2rem;left:-1rem;font-family:'Cormorant Garamond',serif;font-size:18vw;font-weight:300;color:rgba(255,255,255,.025);line-height:1;pointer-events:none;user-select:none;white-space:nowrap}
+.eyebrow{font-size:.58rem;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);margin-bottom:1.5rem;display:block}
+h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3.5rem,6vw,6.5rem);font-weight:300;line-height:.9;letter-spacing:-.02em;position:relative;z-index:1}
+h1 em{font-style:italic;color:var(--off)}
+.hero-sub{font-size:.85rem;color:var(--muted);line-height:1.85;font-weight:200;max-width:360px;border-left:1px solid var(--line);padding-left:1.5rem;position:relative;z-index:1}
+.hero-bottom{position:relative;z-index:1}
+.btn-wh{display:inline-flex;align-items:center;gap:10px;background:var(--white);color:var(--black);font-family:'Jost',sans-serif;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;font-weight:400;padding:12px 28px;text-decoration:none;border:1px solid var(--white);transition:all .2s;cursor:pointer;border-radius:0}
+.btn-wh:hover{background:transparent;color:var(--white)}
+.btn-wh svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:1.5;transition:transform .2s}
+.btn-wh:hover svg{transform:translateX(4px)}
+
+/* DROITE : panneaux */
+.panels{overflow:hidden;position:relative;background:var(--b2)}
+.tabs{display:flex;border-bottom:1px solid var(--line);background:var(--black)}
+.tab{flex:1;padding:1.1rem 1rem;font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);cursor:pointer;border-right:1px solid var(--line);transition:all .2s;text-align:center;font-weight:300;font-family:'Jost',sans-serif;background:none;border-top:none;border-left:none;border-bottom:none;position:relative}
+.tab:last-child{border-right:none}
+.tab::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:var(--white);transform:scaleX(0);transition:transform .25s}
+.tab.active{color:var(--white)}
+.tab.active::after{transform:scaleX(1)}
+.tab:hover{color:rgba(255,255,255,.7)}
+.panel{display:none;height:calc(100vh - 88px - 47px);overflow-y:auto;padding:2.5rem 3rem}
+.panel.active{display:block}
+.panel::-webkit-scrollbar{width:3px}
+.panel::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1)}
+
+/* panel label */
+.panel-label{font-size:.58rem;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);margin-bottom:1.5rem;display:block}
+
+/* DOMAINES */
+.dom-list{display:flex;flex-direction:column}
+.dom-row{display:flex;align-items:center;justify-content:space-between;padding:1.2rem 0;border-bottom:1px solid var(--line);cursor:pointer;transition:all .2s;gap:1rem}
+.dom-row:first-child{border-top:1px solid var(--line)}
+.dom-row:hover{padding-left:.5rem}
+.dom-row:hover .dr-name{color:var(--off)}
+.dom-row:hover .dr-arr{opacity:1;transform:translateX(4px)}
+.dr-left{display:flex;align-items:center;gap:1.2rem}
+.dr-num{font-family:'Cormorant Garamond',serif;font-size:.9rem;color:rgba(255,255,255,.18);min-width:22px}
+.dr-name{font-size:.95rem;font-weight:300;color:var(--white);transition:color .2s}
+.dr-badge{font-size:.48rem;letter-spacing:.16em;text-transform:uppercase;border:1px solid rgba(255,255,255,.18);padding:3px 8px;color:var(--muted);flex-shrink:0}
+.dr-arr{font-size:.75rem;color:var(--muted);opacity:0;transition:all .2s}
+.dom-hint{margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--line);font-size:.75rem;color:var(--muted);line-height:1.7;font-weight:200}
+
+/* INTERNATIONAL */
+.intl-intro{font-size:.85rem;color:var(--muted);line-height:1.8;font-weight:200;margin-bottom:2rem}
+.intl-cards{display:flex;flex-direction:column;gap:.8rem}
+.intl-card{border:1px solid var(--line);padding:1.5rem;cursor:pointer;transition:all .2s;position:relative}
+.intl-card:hover{border-color:rgba(255,255,255,.3);padding-left:2rem}
+.intl-card::after{content:'→';position:absolute;right:1.5rem;top:50%;transform:translateY(-50%);font-size:.75rem;color:var(--muted);opacity:0;transition:opacity .2s}
+.intl-card:hover::after{opacity:1}
+.ic-n{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:rgba(255,255,255,.15);font-weight:300;margin-bottom:.5rem}
+.ic-title{font-size:.72rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--white);margin-bottom:.5rem}
+.ic-body{font-size:.78rem;color:var(--muted);line-height:1.6;font-weight:200}
+.intl-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:1.5rem}
+.itag{font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;border:1px solid rgba(255,255,255,.12);padding:5px 12px;color:var(--muted)}
+
+/* OVERLAY FORMULAIRE */
+.form-overlay{
+  position:fixed;inset:0;z-index:500;
+  display:flex;align-items:stretch;
+  pointer-events:none;opacity:0;
+  transition:opacity .3s;
+}
+.form-overlay.open{pointer-events:all;opacity:1}
+.form-backdrop{flex:1;background:rgba(0,0,0,.6);cursor:pointer}
+.form-drawer{
+  width:480px;max-width:90vw;
+  background:var(--black);
+  border-left:1px solid var(--line);
+  display:flex;flex-direction:column;
+  transform:translateX(100%);
+  transition:transform .35s cubic-bezier(.4,0,.2,1);
+  overflow:hidden;
+}
+.form-overlay.open .form-drawer{transform:translateX(0)}
+
+.drawer-header{
+  padding:1.5rem 2rem;
+  border-bottom:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;
+  flex-shrink:0;
+}
+.drawer-title{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:300;color:var(--white)}
+.drawer-domain{font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:2px}
+.drawer-close{background:none;border:none;color:var(--muted);cursor:pointer;font-size:1.2rem;line-height:1;padding:4px;transition:color .2s;font-family:'Jost',sans-serif}
+.drawer-close:hover{color:var(--white)}
+
+.drawer-body{flex:1;overflow-y:auto;padding:2rem;display:flex;flex-direction:column;gap:0}
+.drawer-body::-webkit-scrollbar{width:3px}
+.drawer-body::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1)}
+
+/* form fields */
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-bottom:1.1rem}
+.frow.full{grid-template-columns:1fr}
+.fg{display:flex;flex-direction:column;gap:5px}
+label{font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:300}
+input,select,textarea{background:transparent;border:none;border-bottom:1px solid rgba(255,255,255,.1);color:var(--white);font-family:'Jost',sans-serif;font-size:.88rem;font-weight:200;padding:.65rem 0;outline:none;width:100%;transition:border-color .2s;border-radius:0}
+input:focus,select:focus,textarea:focus{border-bottom-color:rgba(255,255,255,.45)}
+input::placeholder,textarea::placeholder{color:rgba(255,255,255,.16);font-weight:200}
+select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='5'%3E%3Cpath d='M0 0l4.5 5L9 0z' fill='%235C5C5C'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 2px center}
+select option{background:#0A0A0A}
+textarea{border:1px solid rgba(255,255,255,.1);padding:.75rem .9rem;min-height:75px;resize:none;background:rgba(255,255,255,.015)}
+textarea:focus{border-color:rgba(255,255,255,.3)}
+
+/* modes */
+.mode-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-bottom:1.1rem}
+.mopt{position:relative}
+.mopt input{position:absolute;opacity:0;width:0;height:0}
+.mbtn{display:block;text-align:center;padding:9px 4px;border:1px solid rgba(255,255,255,.1);font-size:.54rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:all .18s}
+.mopt input:checked+.mbtn{border-color:var(--white);color:var(--white);background:rgba(255,255,255,.05)}
+.mbtn:hover{border-color:rgba(255,255,255,.3);color:rgba(255,255,255,.7)}
+
+/* intl toggle */
+.itoggle{display:flex;align-items:center;gap:12px;cursor:pointer;margin-bottom:.8rem;width:fit-content}
+.itrack{width:32px;height:18px;border:1px solid rgba(255,255,255,.18);position:relative;flex-shrink:0;transition:border-color .2s}
+.ithumb{width:10px;height:10px;background:var(--muted);position:absolute;top:3px;left:3px;transition:all .22s}
+.itrack.on .ithumb{left:17px;background:var(--white)}
+.itrack.on{border-color:rgba(255,255,255,.5)}
+.itoggle-label{font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);transition:color .2s}
+.itoggle:hover .itoggle-label{color:var(--white)}
+select:disabled{opacity:.4;cursor:default;pointer-events:none}
+.ifields{padding:1rem;border:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.02);margin-top:.8rem;margin-bottom:1rem}
+
+/* consent + submit */
+.consent{display:flex;align-items:flex-start;gap:10px;margin:1rem 0 1.5rem}
+.consent input[type=checkbox]{width:13px;height:13px;min-width:13px;accent-color:var(--white);margin-top:2px;padding:0;border:none}
+.consent span{font-size:.7rem;color:var(--muted);line-height:1.55;font-weight:200}
+.consent a{color:var(--white);border-bottom:1px solid rgba(255,255,255,.2);text-decoration:none}
+.btn-send{display:flex;align-items:center;justify-content:center;gap:12px;background:var(--white);color:var(--black);border:none;cursor:pointer;font-family:'Jost',sans-serif;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;font-weight:400;padding:14px;transition:opacity .2s;width:100%}
+.btn-send:hover{opacity:.88}
+.btn-send svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:1.5;transition:transform .2s}
+.btn-send:hover svg{transform:translateX(4px)}
+
+/* success */
+.success{display:none;text-align:center;padding:3rem 1rem}
+.s-ring{width:48px;height:48px;border:1px solid rgba(255,255,255,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem}
+.s-ring svg{width:18px;height:18px;stroke:var(--white);fill:none;stroke-width:1.2}
+.success h3{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;margin-bottom:.8rem}
+.success p{font-size:.82rem;color:var(--muted);line-height:1.8;font-weight:200}
+
+/* ANIM hero */
+@keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.eyebrow{animation:up .7s .1s ease both}
+h1{animation:up .8s .2s ease both}
+.hero-sub{animation:up .7s .35s ease both}
+.hero-bottom{animation:up .7s .45s ease both}
+
+@media(max-width:840px){
+  body{overflow:auto}
+  .page{grid-template-columns:1fr;height:auto}
+  .hero{border-right:none;border-bottom:1px solid var(--line);height:auto;padding:3rem 1.5rem}
+  .panel{height:auto;padding:2rem 1.5rem}
+  nav{padding:0 1.5rem}
+  .nav-links{display:none}
+  .form-drawer{width:100vw}
+  .mode-grid{grid-template-columns:1fr 1fr}
+  .frow{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="ti">Rejoignez Apogée Société</span>
+    <span class="ti">Services généraux · RH · Comptabilité · Juridique · Commercial · Communication &amp; Marketing</span>
+    <span class="ti">France &amp; International</span>
+    <span class="ti">Candidature spontanée ouverte</span>
+    <span class="ti">Rejoignez Apogée Société</span>
+    <span class="ti">Services généraux · RH · Comptabilité · Juridique · Commercial · Communication &amp; Marketing</span>
+    <span class="ti">France &amp; International</span>
+    <span class="ti">Candidature spontanée ouverte</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="https://www.apogee-societe.com">Apogée Société</a>
+  <ul class="nav-links">
+    <li><a href="https://www.apogee-societe.com">Accueil</a></li>
+    <li><a href="https://www.apogee-societe.com/services">Services</a></li>
+    <li><a href="https://www.apogee-societe.com/àpropos">À propos</a></li>
+  </ul>
+</nav>
+
+<!-- LAYOUT -->
+<div class="page">
+
+  <!-- GAUCHE -->
+  <div class="hero">
+    <div class="wm" aria-hidden="true">CARRIÈRES</div>
+    <div>
+      <span class="eyebrow">Recrutement &amp; carrières</span>
+      <h1>Révélez<br>votre<br><em>potentiel.</em></h1>
+    </div>
+    <p class="hero-sub">Une structure en pleine expansion, en France et à l'international. Votre expertise a un impact direct et mesurable.</p>
+    <div class="hero-bottom">
+    </div>
+  </div>
+
+  <!-- DROITE -->
+  <div class="panels">
+    <div class="tabs">
+      <button class="tab active" data-tab="candidature">Candidature</button>
+      <button class="tab" data-tab="international">International</button>
+    </div>
+
+    <!-- PANEL CANDIDATURE : liste des domaines -->
+    <div class="panel active" id="panel-candidature">
+      <div class="dom-list">
+        <div class="dom-row" data-domaine="Services généraux">
+          <div class="dr-left"><span class="dr-num">01</span><span class="dr-name">Services généraux</span><span class="dr-badge">Phare</span></div>
+          <span class="dr-arr">→</span>
+        </div>
+        <div class="dom-row" data-domaine="Administratif / RH">
+          <div class="dr-left"><span class="dr-num">02</span><span class="dr-name">Administratif &amp; RH</span></div>
+          <span class="dr-arr">→</span>
+        </div>
+        <div class="dom-row" data-domaine="Comptabilité / Finance">
+          <div class="dr-left"><span class="dr-num">03</span><span class="dr-name">Comptabilité &amp; Finance</span></div>
+          <span class="dr-arr">→</span>
+        </div>
+        <div class="dom-row" data-domaine="Juridique">
+          <div class="dr-left"><span class="dr-num">04</span><span class="dr-name">Juridique</span></div>
+          <span class="dr-arr">→</span>
+        </div>
+        <div class="dom-row" data-domaine="Commercial / Business Dev">
+          <div class="dr-left"><span class="dr-num">05</span><span class="dr-name">Commercial &amp; Business Dev</span></div>
+          <span class="dr-arr">→</span>
+        </div>
+        <div class="dom-row" data-domaine="Communication &amp; Marketing">
+          <div class="dr-left"><span class="dr-num">06</span><span class="dr-name">Communication &amp; Marketing</span></div>
+          <span class="dr-arr">→</span>
+        </div>
+        <div class="dom-row" data-domaine="Candidature spontanée">
+          <div class="dr-left"><span class="dr-num">—</span><span class="dr-name">Candidature spontanée</span></div>
+          <span class="dr-arr">→</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL INTERNATIONAL : cartes cliquables -->
+    <div class="panel" id="panel-international">
+      <div class="intl-cards">
+        <div class="intl-card" data-intl="Candidat en remote depuis l'étranger">
+          <div class="ic-n">I</div>
+          <div class="ic-title">Candidats hors de France</div>
+          <p class="ic-body">Basé à l'étranger et souhaitant rejoindre Apogée en remote ou contribuer localement.</p>
+        </div>
+        <div class="intl-card" data-intl="Partenaire / ambassadeur local">
+          <div class="ic-n">II</div>
+          <div class="ic-title">Partenaires &amp; ambassadeurs</div>
+          <p class="ic-body">Vous connaissez le tissu économique local. Représentez Apogée dans votre région.</p>
+        </div>
+        <div class="intl-card" data-intl="Porteur de projet filiale Apogée">
+          <div class="ic-n">III</div>
+          <div class="ic-title">Porteurs de projet filiale</div>
+          <p class="ic-body">Développez une structure Apogée à l'international, avec notre accompagnement.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DRAWER FORMULAIRE -->
+<div class="form-overlay" id="overlay">
+  <div class="form-backdrop" id="backdrop"></div>
+  <div class="form-drawer">
+    <div class="drawer-header">
+      <div>
+        <div class="drawer-title">Votre candidature</div>
+        <div class="drawer-domain" id="drawer-domain"></div>
+      </div>
+      <button class="drawer-close" id="drawer-close">✕</button>
+    </div>
+    <div class="drawer-body">
+      <form id="form">
+        <div class="frow">
+          <div class="fg"><label for="prenom">Prénom *</label><input id="prenom" name="prenom" type="text" placeholder="Marie" required></div>
+          <div class="fg"><label for="nom">Nom *</label><input id="nom" name="nom" type="text" placeholder="Dupont" required></div>
+        </div>
+        <div class="frow full">
+          <div class="fg"><label for="email">Email *</label><input id="email" name="email" type="email" placeholder="marie@exemple.fr" required></div>
+        </div>
+        <div class="frow full">
+          <div class="fg"><label for="tel">Téléphone</label><input id="tel" name="tel" type="tel" placeholder="+33 6 …"></div>
+        </div>
+        <div class="frow">
+          <div class="fg">
+            <label for="domaine">Domaine *</label>
+            <select id="domaine" name="domaine" required>
+              <option value="" disabled selected>Sélectionnez</option>
+              <option value="Services généraux">Services généraux</option>
+              <option value="Administratif / RH">Administratif / RH</option>
+              <option value="Comptabilité / Finance">Comptabilité / Finance</option>
+              <option value="Juridique">Juridique</option>
+              <option value="Commercial / Business Dev">Commercial / Business Dev</option>
+              <option value="Communication &amp; Marketing">Communication &amp; Marketing</option>
+              <option value="Candidature spontanée">Candidature spontanée</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label for="exp">Expérience</label>
+            <select id="exp" name="exp">
+              <option value="" disabled selected>Sélectionnez</option>
+              <option>Junior — moins de 2 ans</option>
+              <option>Confirmé — 2 à 5 ans</option>
+              <option>Senior — 5 à 10 ans</option>
+              <option>Expert — 10 ans et plus</option>
+            </select>
+          </div>
+        </div>
+        <div class="frow">
+          <div class="fg">
+            <label for="dispo">Disponibilité</label>
+            <select id="dispo" name="dispo">
+              <option value="" disabled selected>Sélectionnez</option>
+              <option>Immédiate</option>
+              <option>Sous 1 mois</option>
+              <option>Sous 3 mois</option>
+              <option>Sous 6 mois</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="margin-bottom:1rem">
+          <label style="display:block;margin-bottom:.6rem">Mode souhaité *</label>
+          <div class="mode-grid">
+            <label class="mopt"><input type="radio" name="mode" value="Full remote" required><span class="mbtn">Remote</span></label>
+            <label class="mopt"><input type="radio" name="mode" value="Présentiel"><span class="mbtn">Présentiel</span></label>
+            <label class="mopt"><input type="radio" name="mode" value="Flexible"><span class="mbtn">Flexible</span></label>
+          </div>
+        </div>
+
+        <div id="intl-section" style="margin-bottom:1rem;display:none">
+          <div class="itoggle" id="itoggle" role="button" tabindex="0" aria-expanded="true">
+            <div class="itrack on" id="itrack"><div class="ithumb"></div></div>
+            <span class="itoggle-label">Basé hors de France</span>
+          </div>
+          <div class="ifields" id="ifields">
+            <div class="frow" style="margin-bottom:.8rem">
+              <div class="fg"><label for="pays">Pays *</label><input id="pays" name="pays" type="text" placeholder="Ex : Australie…"></div>
+              <div class="fg"><label for="ville">Ville</label><input id="ville" name="ville" type="text" placeholder="Ex : Sydney"></div>
+            </div>
+            <div class="fg">
+              <label for="itype">Type de profil *</label>
+              <select id="itype" name="itype">
+                <option value="" disabled selected>Sélectionnez</option>
+                <option>Candidat en remote depuis l'étranger</option>
+                <option>Partenaire / ambassadeur local</option>
+                <option>Porteur de projet filiale Apogée</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="frow full">
+          <div class="fg">
+            <label for="msg">Parcours &amp; motivations *</label>
+            <textarea id="msg" name="msg" placeholder="Dites-nous qui vous êtes…" required></textarea>
+          </div>
+        </div>
+
+        <div class="consent">
+          <input type="checkbox" id="rgpd" required>
+          <span>J'accepte l'utilisation de mes données pour ma candidature — <a href="https://www.apogee-societe.com/politiquedeconfidentialité" target="_blank">confidentialité</a>.</span>
+        </div>
+
+        <button type="submit" class="btn-send">
+          Envoyer
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </form>
+
+      <div class="success" id="success">
+        <div class="s-ring"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <h3>Reçue.</h3>
+        <p>Merci pour votre intérêt.<br>Nous revenons vers vous rapidement.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── TABS
+function switchTab(name){
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab===name));
+  document.querySelectorAll('.panel').forEach(p => p.classList.toggle('active', p.id==='panel-'+name));
+}
+document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => switchTab(t.dataset.tab)));
+
+// ── DRAWER
+const overlay = document.getElementById('overlay');
+const domSelect = document.getElementById('domaine');
+
+function openDrawer(domaine, intlType){
+  // reset formulaire visuel
+  intlOpen = false;
+  document.getElementById('itrack').classList.remove('on');
+  document.getElementById('ifields').classList.remove('open');
+  document.getElementById('pays').required = false;
+  document.getElementById('itype').required = false;
+  document.getElementById('intl-section').style.display = 'none';
+
+  // pré-remplir et verrouiller le domaine
+  for(let o of domSelect.options){ o.selected = o.value === domaine; }
+  domSelect.disabled = true;
+  document.getElementById('drawer-domain').textContent = domaine;
+
+  // international : activer uniquement si vient d'une carte intl
+  if(intlType){
+    document.getElementById('intl-section').style.display = 'block';
+    intlOpen = true;
+    document.getElementById('itrack').classList.add('on');
+    document.getElementById('ifields').classList.add('open');
+    document.getElementById('pays').required = true;
+    document.getElementById('itype').required = true;
+    const s = document.getElementById('itype');
+    for(let o of s.options){ o.selected = o.value === intlType; }
+  }
+
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDrawer(){
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+  domSelect.disabled = false;
+  document.getElementById('itype').disabled = false;
+}
+document.getElementById('backdrop').addEventListener('click', closeDrawer);
+document.getElementById('drawer-close').addEventListener('click', closeDrawer);
+
+// ── DOMAINES → domaine verrouillé, pas de section internationale
+document.querySelectorAll('.dom-row[data-domaine]').forEach(row => {
+  row.addEventListener('click', function(){
+    openDrawer(this.dataset.domaine, null);
+  });
+});
+
+// ── CARTES INTERNATIONALES → domaine = spontanée + toggle activé + type verrouillé
+document.querySelectorAll('.intl-card[data-intl]').forEach(card => {
+  card.addEventListener('click', function(){
+    const intlType = this.dataset.intl;
+    openDrawer('Candidature spontanée', intlType);
+    // verrouiller le select type de profil
+    const s = document.getElementById('itype');
+    s.disabled = true;
+  });
+});
+
+// ── TOGGLE (uniquement si affiché)
+let intlOpen = false;
+const itoggle = document.getElementById('itoggle');
+itoggle.addEventListener('click', function(){
+  intlOpen = !intlOpen;
+  document.getElementById('itrack').classList.toggle('on', intlOpen);
+  document.getElementById('ifields').classList.toggle('open', intlOpen);
+  itoggle.setAttribute('aria-expanded', intlOpen);
+  document.getElementById('pays').required  = intlOpen;
+  document.getElementById('itype').required = intlOpen;
+});
+
+// ── SUBMIT
+document.getElementById('form').addEventListener('submit', function(e){
+  e.preventDefault();
+  const d  = new FormData(this);
+  const g  = k => (d.get(k)||'Non renseigné').trim();
+  const il = intlOpen
+    ? 'Pays : '+g('pays')+' / Ville : '+g('ville')+' / Profil : '+g('itype')
+    : 'Basé en France';
+  const subject = 'Candidature - '+g('prenom')+' '+g('nom')+' - '+g('domaine');
+  const body = [
+    'CANDIDATURE - APOGEE SOCIETE',
+    '---',
+    'Nom : '+g('prenom')+' '+g('nom'),
+    'Email : '+g('email'),
+    'Tel : '+g('tel'),
+    '---',
+    'Domaine : '+g('domaine'),
+    'Experience : '+g('exp'),
+    'Disponibilite : '+g('dispo'),
+    'Mode : '+g('mode'),
+    'Localisation : '+il,
+    '---',
+    g('msg'),
+    '---',
+    'apogee-societe.com/recrutement'
+  ].join('%0D%0A');
+  const a = document.createElement('a');
+  a.href = 'mailto:contact@apogee-societe.fr?subject='+encodeURIComponent(subject)+'&body='+body;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  this.style.display = 'none';
+  document.getElementById('success').style.display = 'block';
+});
+</script>
+</body>
+</html>
