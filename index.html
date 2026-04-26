@@ -36,7 +36,7 @@ nav{position:fixed;top:28px;left:0;right:0;z-index:300;display:flex;align-items:
 
 /* HERO gauche */
 .hero{border-right:1px solid var(--line);padding:4rem 3rem;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
-.wm{position:absolute;bottom:-2rem;left:-1rem;font-family:'Cormorant Garamond',serif;font-size:18vw;font-weight:300;color:rgba(255,255,255,.025);line-height:1;pointer-events:none;user-select:none;white-space:nowrap}
+.wm{position:absolute;bottom:2rem;left:0;right:0;font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,8vw,7rem);font-weight:300;color:rgba(255,255,255,.06);line-height:1;pointer-events:none;user-select:none;white-space:nowrap;letter-spacing:.15em;text-align:center}
 .eyebrow{font-size:.58rem;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);margin-bottom:1.5rem;display:block}
 h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3.5rem,6vw,6.5rem);font-weight:300;line-height:.9;letter-spacing:-.02em;position:relative;z-index:1}
 h1 em{font-style:italic;color:var(--off)}
@@ -247,31 +247,31 @@ h1{animation:up .8s .2s ease both}
     <div class="panel active" id="panel-candidature">
       <div class="dom-list">
         <div class="dom-row" data-domaine="Services généraux">
-          <div class="dr-left"><span class="dr-num">01</span><span class="dr-name">Services généraux</span><span class="dr-badge">Phare</span></div>
+          <div class="dr-left"><span class="dr-name">Services généraux</span><span class="dr-badge">Phare</span></div>
           <span class="dr-arr">→</span>
         </div>
         <div class="dom-row" data-domaine="Administratif / RH">
-          <div class="dr-left"><span class="dr-num">02</span><span class="dr-name">Administratif &amp; RH</span></div>
+          <div class="dr-left"><span class="dr-name">Administratif &amp; RH</span></div>
           <span class="dr-arr">→</span>
         </div>
         <div class="dom-row" data-domaine="Comptabilité / Finance">
-          <div class="dr-left"><span class="dr-num">03</span><span class="dr-name">Comptabilité &amp; Finance</span></div>
+          <div class="dr-left"><span class="dr-name">Comptabilité &amp; Finance</span></div>
           <span class="dr-arr">→</span>
         </div>
         <div class="dom-row" data-domaine="Juridique">
-          <div class="dr-left"><span class="dr-num">04</span><span class="dr-name">Juridique</span></div>
+          <div class="dr-left"><span class="dr-name">Juridique</span></div>
           <span class="dr-arr">→</span>
         </div>
         <div class="dom-row" data-domaine="Commercial / Business Dev">
-          <div class="dr-left"><span class="dr-num">05</span><span class="dr-name">Commercial &amp; Business Dev</span></div>
+          <div class="dr-left"><span class="dr-name">Commercial &amp; Business Dev</span></div>
           <span class="dr-arr">→</span>
         </div>
         <div class="dom-row" data-domaine="Communication &amp; Marketing">
-          <div class="dr-left"><span class="dr-num">06</span><span class="dr-name">Communication &amp; Marketing</span></div>
+          <div class="dr-left"><span class="dr-name">Communication &amp; Marketing</span></div>
           <span class="dr-arr">→</span>
         </div>
         <div class="dom-row" data-domaine="Candidature spontanée">
-          <div class="dr-left"><span class="dr-num">—</span><span class="dr-name">Candidature spontanée</span></div>
+          <div class="dr-left"><span class="dr-name">Candidature spontanée</span></div>
           <span class="dr-arr">→</span>
         </div>
       </div>
@@ -281,17 +281,14 @@ h1{animation:up .8s .2s ease both}
     <div class="panel" id="panel-international">
       <div class="intl-cards">
         <div class="intl-card" data-intl="Candidat en remote depuis l'étranger">
-          <div class="ic-n">I</div>
           <div class="ic-title">Candidats hors de France</div>
           <p class="ic-body">Basé à l'étranger et souhaitant rejoindre Apogée en remote ou contribuer localement.</p>
         </div>
         <div class="intl-card" data-intl="Partenaire / ambassadeur local">
-          <div class="ic-n">II</div>
           <div class="ic-title">Partenaires &amp; ambassadeurs</div>
           <p class="ic-body">Vous connaissez le tissu économique local. Représentez Apogée dans votre région.</p>
         </div>
         <div class="intl-card" data-intl="Porteur de projet filiale Apogée">
-          <div class="ic-n">III</div>
           <div class="ic-title">Porteurs de projet filiale</div>
           <p class="ic-body">Développez une structure Apogée à l'international, avec notre accompagnement.</p>
         </div>
