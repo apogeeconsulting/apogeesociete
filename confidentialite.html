@@ -3,12 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Politique de confidentialité , Apogée Société</title>
+<title>Confidentialité — Apogée Société</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
 :root{
   --black:#0A0A0A;
   --b2:#141414;
@@ -17,7 +16,7 @@ html{scroll-behavior:smooth}
   --off:#F0EDE8;
   --white:#FFFFFF;
 }
-body{font-family:'Jost',sans-serif;background:var(--black);color:var(--white);font-weight:300;overflow-x:hidden}
+body{font-family:'Jost',sans-serif;background:var(--black);color:var(--white);overflow:hidden;height:100vh;font-weight:300}
 
 /* TICKER */
 .ticker{background:var(--white);height:28px;overflow:hidden;display:flex;align-items:center;position:fixed;top:0;left:0;right:0;z-index:400}
@@ -32,99 +31,79 @@ nav{position:fixed;top:28px;left:0;right:0;z-index:300;display:flex;align-items:
 .nav-links a{font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s}
 .nav-links a:hover{color:var(--white)}
 
-/* LAYOUT */
-.page{margin-top:88px;display:grid;grid-template-columns:1fr 2fr;min-height:calc(100vh - 88px)}
+/* LAYOUT : identique à carrière */
+.page{margin-top:88px;height:calc(100vh - 88px);display:grid;grid-template-columns:1fr 1fr}
 
-/* SIDEBAR gauche */
-.sidebar{
-  border-right:1px solid var(--line);
-  padding:4rem 3rem;
-  display:flex;flex-direction:column;justify-content:space-between;
-  position:sticky;top:88px;height:calc(100vh - 88px);
-  overflow:hidden;
-}
-.wm{position:absolute;bottom:1rem;left:50%;transform:translateX(-50%);font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,6vw,5.5rem);font-weight:300;color:rgba(255,255,255,.07);line-height:1;pointer-events:none;user-select:none;white-space:nowrap;letter-spacing:.2em;text-align:center}
+/* GAUCHE */
+.hero{border-right:1px solid var(--line);padding:4rem 3rem;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+.wm{position:absolute;bottom:2rem;left:0;right:0;font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,8vw,7rem);font-weight:300;color:rgba(255,255,255,.06);line-height:1;pointer-events:none;user-select:none;white-space:nowrap;letter-spacing:.15em;text-align:center}
 .eyebrow{font-size:.58rem;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);margin-bottom:1.5rem;display:block}
-.sidebar h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3.5rem);font-weight:300;line-height:1;letter-spacing:-.02em;position:relative;z-index:1}
-.sidebar h1 em{font-style:italic;color:var(--off)}
-.sidebar-meta{position:relative;z-index:1}
-.meta-item{padding:.8rem 0;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:3px}
-.meta-label{font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
-.meta-val{font-size:.8rem;color:var(--white);font-weight:300}
+h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3.5rem,6vw,6.5rem);font-weight:300;line-height:.9;letter-spacing:-.02em;position:relative;z-index:1}
+h1 em{font-style:italic;color:var(--off)}
+.hero-sub{font-size:.85rem;color:var(--muted);line-height:1.85;font-weight:200;max-width:360px;border-left:1px solid var(--line);padding-left:1.5rem;position:relative;z-index:1}
+.hero-bottom{position:relative;z-index:1}
 
-/* NAV articles sidebar */
-.art-nav{display:flex;flex-direction:column;gap:0;margin-top:1rem}
-.art-nav a{
-  font-size:.65rem;letter-spacing:.08em;color:var(--muted);
-  text-decoration:none;padding:.6rem 0;
-  border-top:1px solid var(--line);
-  transition:color .2s;display:flex;align-items:center;justify-content:space-between;
-}
+/* nav articles gauche */
+.art-nav{display:flex;flex-direction:column}
+.art-nav a{font-size:.62rem;letter-spacing:.1em;color:var(--muted);text-decoration:none;padding:.65rem 0;border-top:1px solid var(--line);transition:color .2s;display:flex;align-items:center;justify-content:space-between}
 .art-nav a:hover{color:var(--white)}
-.art-nav a span{font-size:.6rem;opacity:0;transition:opacity .2s}
-.art-nav a:hover span{opacity:1}
+.art-nav a .arr{font-size:.6rem;opacity:0;transition:opacity .2s}
+.art-nav a:hover .arr{opacity:1}
+.meta{font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:1.5rem}
 
-/* CONTENU droite */
-.content{padding:4rem 4rem 6rem;max-width:800px}
-
-.intro-block{margin-bottom:4rem;padding-bottom:3rem;border-bottom:1px solid var(--line)}
-.intro-block p{font-size:.95rem;color:var(--muted);line-height:1.9;font-weight:200}
-.intro-block p strong{color:var(--white);font-weight:400}
+/* DROITE : panel unique scrollable */
+.panels{overflow:hidden;position:relative;background:var(--b2)}
+.panel{height:calc(100vh - 88px);overflow-y:auto;padding:2.5rem 3rem}
+.panel::-webkit-scrollbar{width:3px}
+.panel::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1)}
 
 /* articles */
-.article{margin-bottom:3.5rem;padding-bottom:3.5rem;border-bottom:1px solid var(--line)}
-.article:last-child{border-bottom:none}
-.article-header{display:flex;align-items:baseline;gap:1.5rem;margin-bottom:1.5rem}
-.article-num{font-family:'Cormorant Garamond',serif;font-size:2.5rem;color:rgba(255,255,255,.08);font-weight:300;line-height:1;flex-shrink:0}
-.article h2{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:400;color:var(--white);line-height:1.2;letter-spacing:.01em}
-.article h3{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin:1.8rem 0 .8rem;font-weight:400}
-.article p{font-size:.88rem;color:var(--muted);line-height:1.85;font-weight:200;margin-bottom:1rem}
-.article p:last-child{margin-bottom:0}
-.article p strong{color:rgba(255,255,255,.7);font-weight:400}
-.article a{color:var(--white);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.2);transition:border-color .2s}
-.article a:hover{border-color:rgba(255,255,255,.6)}
-a{color:var(--white);text-decoration:none}
+.article{padding-bottom:2.5rem;margin-bottom:2.5rem;border-bottom:1px solid var(--line)}
+.article:last-child{border-bottom:none;margin-bottom:0}
+.art-header{display:flex;align-items:baseline;gap:1.2rem;margin-bottom:1.2rem}
+.art-n{font-family:'Cormorant Garamond',serif;font-size:2rem;color:rgba(255,255,255,.08);font-weight:300;line-height:1;flex-shrink:0}
+.art-title{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:400;color:var(--white);line-height:1.2}
+.art-sub{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:1.5rem 0 .7rem;font-weight:400}
+p{font-size:.85rem;color:var(--muted);line-height:1.85;font-weight:200;margin-bottom:.9rem}
+p:last-child{margin-bottom:0}
+p strong{color:rgba(255,255,255,.65);font-weight:400}
+a{color:var(--white);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.2)}
+a:hover{border-bottom-color:rgba(255,255,255,.6)}
 
-/* liste droits */
-.rights-list{display:flex;flex-direction:column;gap:0;margin:1rem 0}
-.right-item{display:grid;grid-template-columns:28px 1fr;gap:1rem;padding:1rem 0;border-top:1px solid var(--line);align-items:start}
-.right-item:last-child{border-bottom:1px solid var(--line)}
-.right-letter{font-family:'Cormorant Garamond',serif;font-size:1rem;color:rgba(255,255,255,.2);font-weight:300}
-.right-item p{font-size:.84rem;color:var(--muted);line-height:1.7;font-weight:200;margin:0}
-.right-item p strong{color:rgba(255,255,255,.7);font-weight:400}
+/* listes */
+.blist{list-style:none;display:flex;flex-direction:column;gap:.5rem;margin:.7rem 0}
+.blist li{font-size:.83rem;color:var(--muted);line-height:1.7;font-weight:200;display:flex;gap:.8rem}
+.blist li::before{content:',';color:rgba(255,255,255,.15);flex-shrink:0;font-size:1rem;line-height:1.5}
 
-/* liste puces */
-.bullet-list{list-style:none;display:flex;flex-direction:column;gap:.5rem;margin:.8rem 0}
-.bullet-list li{font-size:.84rem;color:var(--muted);line-height:1.7;font-weight:200;display:flex;gap:.8rem}
-.bullet-list li::before{content:',';color:rgba(255,255,255,.15);flex-shrink:0}
+/* grille principes / durées */
+.grid-items{display:flex;flex-direction:column;margin:.8rem 0}
+.gi{display:grid;grid-template-columns:1fr;gap:.25rem;padding:.8rem 0;border-top:1px solid var(--line)}
+.gi:last-child{border-bottom:1px solid var(--line)}
+.gi-name{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.4);font-weight:400}
+.gi-val{font-size:.83rem;color:var(--muted);line-height:1.6;font-weight:200}
 
-/* principes */
-.principles{display:flex;flex-direction:column;gap:0;margin:1rem 0}
-.principle{padding:1rem 0;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr;gap:.3rem}
-.principle:last-child{border-bottom:1px solid var(--line)}
-.principle-name{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.5);font-weight:400}
-.principle-desc{font-size:.83rem;color:var(--muted);line-height:1.65;font-weight:200}
+/* droits */
+.rights{display:flex;flex-direction:column}
+.right{display:grid;grid-template-columns:20px 1fr;gap:1rem;padding:.9rem 0;border-top:1px solid var(--line);align-items:start}
+.right:last-child{border-bottom:1px solid var(--line)}
+.right-l{font-family:'Cormorant Garamond',serif;font-size:.95rem;color:rgba(255,255,255,.18);font-weight:300}
+.right p{margin:0;font-size:.82rem}
 
-/* cookies nav */
-.cookies-list{list-style:none;display:flex;flex-direction:column;gap:.4rem;margin:.8rem 0}
-.cookies-list li{font-size:.82rem;color:var(--muted);font-weight:200}
-.cookies-list li a{color:var(--white);border-bottom:1px solid rgba(255,255,255,.2);text-decoration:none}
+/* badge date */
+.date-badge{display:inline-flex;align-items:center;gap:.5rem;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);padding:.45rem .9rem;margin-top:1.5rem}
+.date-badge span{color:var(--white)}
 
-/* update badge */
-.update-badge{display:inline-flex;align-items:center;gap:.6rem;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);padding:.5rem 1rem;margin-top:2rem}
-.update-badge span{color:var(--white)}
-
-/* ANIM */
-@keyframes up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
 .eyebrow{animation:up .7s .1s ease both}
-.sidebar h1{animation:up .8s .2s ease both}
-.sidebar-meta{animation:up .7s .35s ease both}
+h1{animation:up .8s .2s ease both}
+.hero-sub{animation:up .7s .35s ease both}
+.hero-bottom{animation:up .7s .45s ease both}
 
-@media(max-width:900px){
+@media(max-width:840px){
   body{overflow:auto}
-  .page{grid-template-columns:1fr}
-  .sidebar{position:relative;height:auto;top:0;border-right:none;border-bottom:1px solid var(--line);padding:3rem 1.5rem}
-  .content{padding:3rem 1.5rem}
+  .page{grid-template-columns:1fr;height:auto}
+  .hero{border-right:none;border-bottom:1px solid var(--line);height:auto;padding:3rem 1.5rem}
+  .panel{height:auto;padding:2rem 1.5rem}
   nav{padding:0 1.5rem}
   .nav-links{display:none}
   .art-nav{display:none}
@@ -138,12 +117,12 @@ a{color:var(--white);text-decoration:none}
   <div class="ticker-track">
     <span class="ti">Politique de confidentialité</span>
     <span class="ti">Apogée Société</span>
-    <span class="ti">RGPD , Règlement n° 2016-679</span>
-    <span class="ti">Dernière mise à jour : 23/11/2023</span>
+    <span class="ti">RGPD n° 2016-679</span>
+    <span class="ti">Loi Informatique et Libertés 1978</span>
     <span class="ti">Politique de confidentialité</span>
     <span class="ti">Apogée Société</span>
-    <span class="ti">RGPD , Règlement n° 2016-679</span>
-    <span class="ti">Dernière mise à jour : 23/11/2023</span>
+    <span class="ti">RGPD n° 2016-679</span>
+    <span class="ti">Loi Informatique et Libertés 1978</span>
   </div>
 </div>
 
@@ -157,222 +136,134 @@ a{color:var(--white);text-decoration:none}
   </ul>
 </nav>
 
-<!-- LAYOUT -->
 <div class="page">
 
-  <!-- SIDEBAR -->
-  <div class="sidebar">
+  <!-- GAUCHE -->
+  <div class="hero">
     <div class="wm" aria-hidden="true">RGPD</div>
     <div>
       <span class="eyebrow">Protection des données</span>
       <h1>Politique de<br><em>confidentialité</em></h1>
     </div>
-    <div class="sidebar-meta">
-      <div class="meta-item">
-        <span class="meta-label">Mise à jour</span>
-        <span class="meta-val">23 novembre 2023</span>
-      </div>
-    </div>
-    <div class="sidebar-meta">
+    <p class="hero-sub">Mise à jour le 23 novembre 2023</p>
+    <div class="hero-bottom">
       <nav class="art-nav">
-        <a href="#art1">Préambule <span>→</span></a>
-        <a href="#art2">Principes généraux <span>→</span></a>
-        <a href="#art3">Données collectées <span>→</span></a>
-        <a href="#art4">Responsable du traitement <span>→</span></a>
-        <a href="#art5">Droits de l'utilisateur <span>→</span></a>
-        <a href="#art6">Cookies <span>→</span></a>
-        <a href="#art7">Modifications <span>→</span></a>
-      </nav>
-    </div>
-        <a href="#art1">Préambule <span>→</span></a>
-        <a href="#art2">Principes généraux <span>→</span></a>
-        <a href="#art3">Données collectées <span>→</span></a>
-        <a href="#art4">Responsable du traitement <span>→</span></a>
-        <a href="#art5">Droits de l'utilisateur <span>→</span></a>
-        <a href="#art6">Cookies <span>→</span></a>
-        <a href="#art7">Modifications <span>→</span></a>
+        <a href="#art1">Préambule <span class="arr">→</span></a>
+        <a href="#art2">Principes généraux <span class="arr">→</span></a>
+        <a href="#art3">Données collectées <span class="arr">→</span></a>
+        <a href="#art4">Responsable du traitement <span class="arr">→</span></a>
+        <a href="#art5">Droits de l'utilisateur <span class="arr">→</span></a>
+        <a href="#art6">Cookies <span class="arr">→</span></a>
+        <a href="#art7">Modifications <span class="arr">→</span></a>
       </nav>
     </div>
   </div>
 
-  <!-- CONTENU -->
-  <div class="content">
+  <!-- DROITE -->
+  <div class="panels">
+    <div class="panel">
 
-    <div class="intro-block">
-      <p>Le groupe Apogée dont <strong>Apogée Consulting</strong> est une filiale, souhaite construire une relation de confiance avec ses clients, ses partenaires et ses collaborateurs. Dans ce cadre, le groupe Apogée s'engage à assurer le meilleur niveau de protection de vos données personnelles, conformément à la <strong>Loi Informatique et Libertés du 6 janvier 1978</strong> ainsi qu'au <strong>Règlement Général sur la Protection des Données (RGPD n° 2016-679)</strong>.</p>
+      <div class="article" id="art1">
+        <div class="art-header">
+          <span class="art-n">01</span>
+          <span class="art-title">Préambule</span>
+        </div>
+        <p>Le groupe Apogée dont <strong>Apogée Consulting</strong> est une filiale s'engage à assurer le meilleur niveau de protection de vos données personnelles, conformément à la <strong>Loi Informatique et Libertés du 6 janvier 1978</strong> et au <strong>RGPD n° 2016-679</strong>.</p>
+        <p>Cette politique s'applique au site <strong>Apogée Société</strong> et expose la manière dont sont collectées et traitées vos données, vos droits, l'identité du responsable du traitement et la politique cookies. Elle complète les <a href="https://www.apogee-societe.com/mentionslégales">mentions légales</a>.</p>
+      </div>
+
+      <div class="article" id="art2">
+        <div class="art-header">
+          <span class="art-n">02</span>
+          <span class="art-title">Principes généraux</span>
+        </div>
+        <div class="grid-items">
+          <div class="gi"><span class="gi-name">Licéité, loyauté, transparence</span><span class="gi-val">Les données ne sont collectées qu'avec le consentement de l'utilisateur, informé des finalités.</span></div>
+          <div class="gi"><span class="gi-name">Finalités limitées</span><span class="gi-val">La collecte répond uniquement aux objectifs déterminés dans les présentes conditions.</span></div>
+          <div class="gi"><span class="gi-name">Minimisation</span><span class="gi-val">Seules les données nécessaires à la bonne exécution des objectifs sont collectées.</span></div>
+          <div class="gi"><span class="gi-name">Conservation limitée</span><span class="gi-val">Les données sont conservées pour une durée limitée, dont l'utilisateur est informé.</span></div>
+          <div class="gi"><span class="gi-name">Intégrité et confidentialité</span><span class="gi-val">Le responsable s'engage à garantir l'intégrité et la confidentialité des données collectées.</span></div>
+        </div>
+      </div>
+
+      <div class="article" id="art3">
+        <div class="art-header">
+          <span class="art-n">03</span>
+          <span class="art-title">Données collectées et traitées</span>
+        </div>
+        <p class="art-sub">A. Données collectées</p>
+        <p><strong>Données d'identification :</strong> prénom, nom, adresse e-mail, adresse postale, téléphone, fonction, organisme, coordonnées bancaires (paiements).</p>
+        <p><strong>Données de connexion :</strong> adresse IP, date et heure, géolocalisation.</p>
+        <p>Ces données sont collectées lors de la connexion, de la réservation d'un rendez-vous ou de l'utilisation d'un formulaire de contact — y compris le formulaire de candidature.</p>
+        <p class="art-sub">Durées de conservation</p>
+        <div class="grid-items">
+          <div class="gi"><span class="gi-name">Données comptables</span><span class="gi-val">10 ans</span></div>
+          <div class="gi"><span class="gi-name">Documents contractuels et commerciaux</span><span class="gi-val">3 ans</span></div>
+          <div class="gi"><span class="gi-name">Cookies d'analyse</span><span class="gi-val">13 mois</span></div>
+          <div class="gi"><span class="gi-name">Candidatures reçues par e-mail</span><span class="gi-val">2 ans maximum après le dernier contact</span></div>
+        </div>
+        <p class="art-sub">B. Transmission à des tiers</p>
+        <p>Les données collectées ne sont transmises à aucun tiers et ne sont traitées que par l'éditeur du site.</p>
+        <p class="art-sub">C. Hébergement</p>
+        <p>Le site est hébergé par <strong>1&1 Internet SARL</strong>, 7 place de la Gare, FR-57200 Sarreguemines, tél. <a href="tel:+33970808991">+33 9 70 80 89 91</a>. Les données sont exclusivement hébergées et traitées en France.</p>
+        <p><strong>Note :</strong> la page Recrutement est hébergée via GitHub Pages (Microsoft Ireland). Aucune donnée personnelle n'y est stockée — le formulaire s'envoie par e-mail directement depuis le navigateur de l'utilisateur.</p>
+      </div>
+
+      <div class="article" id="art4">
+        <div class="art-header">
+          <span class="art-n">04</span>
+          <span class="art-title">Responsable du traitement</span>
+        </div>
+        <p class="art-sub">A. Identité</p>
+        <p><strong>Madame Fitte-Duval Gaëlle</strong>, joignable au <a href="tel:+33766540803">+33 7 66 54 08 03</a>, du lundi au vendredi de 13h00 à 17h00.</p>
+        <p class="art-sub">B. Obligations</p>
+        <ul class="blist">
+          <li>Protection des données et absence de transmission non consentie à des tiers.</li>
+          <li>Certificat SSL garantissant la sécurité des échanges sur le site.</li>
+          <li>Notification de l'utilisateur en cas de rectification ou suppression de ses données.</li>
+          <li>Information immédiate en cas de compromission de l'intégrité ou de la confidentialité des données.</li>
+          <li>Réponse à toute demande d'exercice des droits dans un délai maximum d'<strong>1 mois</strong>.</li>
+        </ul>
+      </div>
+
+      <div class="article" id="art5">
+        <div class="art-header">
+          <span class="art-n">05</span>
+          <span class="art-title">Droits de l'utilisateur</span>
+        </div>
+        <p>Pour exercer ses droits, l'utilisateur adresse un e-mail au responsable du traitement en précisant l'objet de sa demande. Toute demande est traitée dans un délai maximum d'<strong>1 mois</strong>.</p>
+        <div class="rights">
+          <div class="right"><span class="right-l">a</span><p><strong style="color:rgba(255,255,255,.65);font-weight:400">Accès, rectification, effacement</strong> — consultation, modification ou suppression des données par e-mail.</p></div>
+          <div class="right"><span class="right-l">b</span><p><strong style="color:rgba(255,255,255,.65);font-weight:400">Portabilité</strong> — transfert des données vers un autre service, sur demande par e-mail.</p></div>
+          <div class="right"><span class="right-l">c</span><p><strong style="color:rgba(255,255,255,.65);font-weight:400">Limitation et opposition</strong> — demande de limitation ou opposition au traitement, sauf motif légitime impérieux.</p></div>
+          <div class="right"><span class="right-l">d</span><p><strong style="color:rgba(255,255,255,.65);font-weight:400">Décisions automatisées</strong> — l'utilisateur ne peut faire l'objet d'une décision fondée exclusivement sur un traitement automatisé.</p></div>
+          <div class="right"><span class="right-l">e</span><p><strong style="color:rgba(255,255,255,.65);font-weight:400">Sort des données post-mortem</strong> — l'utilisateur peut organiser le devenir de ses données en cas de décès (loi n°2016-1321).</p></div>
+          <div class="right"><span class="right-l">f</span><p><strong style="color:rgba(255,255,255,.65);font-weight:400">Saisine de la CNIL</strong> — en cas de litige ou de non-réponse, l'utilisateur peut saisir la <a href="http://www.cnil.fr" target="_blank">CNIL</a> ou tout juge compétent.</p></div>
+        </div>
+        <p class="art-sub" style="margin-top:1.5rem">Mineurs</p>
+        <p>Seuls les mineurs de 15 ans ou plus peuvent consentir au traitement de leurs données. En dessous de cet âge, l'accord d'un représentant légal est requis.</p>
+      </div>
+
+      <div class="article" id="art6">
+        <div class="art-header">
+          <span class="art-n">06</span>
+          <span class="art-title">Cookies</span>
+        </div>
+        <p>Un cookie est un fichier de moins de 4 Ko stocké sur le terminal de l'utilisateur. Le consentement est requis pour les cookies non essentiels et reste valide <strong>6 mois</strong>.</p>
+        <p>L'utilisateur peut retirer son consentement à tout moment via les paramètres de son navigateur : <a href="https://support.google.com/accounts/answer/61416?hl=fr" target="_blank">Chrome</a>, <a href="https://support.mozilla.org/fr/kb/enable-and-disable-cookies-website-preferences" target="_blank">Firefox</a>, <a href="https://www.apple.com/legal/privacy/fr-ww/" target="_blank">Safari</a>, <a href="https://support.microsoft.com/fr-fr/help/17422" target="_blank">Internet Explorer</a>, <a href="https://www.opera.com/help/tutorials/security/cookies/" target="_blank">Opera</a>.</p>
+        <p>La désactivation des cookies n'empêche pas la navigation. Tout dysfonctionnement lié à cette manipulation ne saurait être imputé à l'éditeur.</p>
+      </div>
+
+      <div class="article" id="art7">
+        <div class="art-header">
+          <span class="art-n">07</span>
+          <span class="art-title">Modifications</span>
+        </div>
+        <p>Cette politique peut être modifiée à tout moment pour garantir sa conformité avec le droit en vigueur. L'utilisateur est invité à la consulter régulièrement à l'adresse <a href="https://www.apogee-societe.com/politiquedeconfidentialité">apogee-societe.com/politiquedeconfidentialité</a>.</p>
+        <div class="date-badge">Dernière mise à jour <span>23 novembre 2023</span></div>
+      </div>
+
     </div>
-
-    <!-- ART 1 -->
-    <div class="article" id="art1">
-      <div class="article-header">
-        <span class="article-num">01</span>
-        <h2>Préambule</h2>
-      </div>
-      <p>Cette politique de confidentialité s'applique au site <strong>Apogée Société</strong> et a pour but d'exposer aux utilisateurs :</p>
-      <ul class="bullet-list">
-        <li>La manière dont sont collectées et traitées leurs données à caractère personnel , prénom, nom, âge, adresse postale, adresse mail, localisation, adresse IP.</li>
-        <li>Les droits des utilisateurs concernant ces données.</li>
-        <li>L'identité du responsable du traitement des données.</li>
-        <li>Les destinataires de ces données.</li>
-        <li>La politique du site en matière de cookies.</li>
-      </ul>
-      <p>Cette politique complète les <a href="https://www.apogee-societe.com/mentionslégales">mentions légales et conditions générales d'utilisation</a>.</p>
-    </div>
-
-    <!-- ART 2 -->
-    <div class="article" id="art2">
-      <div class="article-header">
-        <span class="article-num">02</span>
-        <h2>Principes généraux de collecte et de traitement</h2>
-      </div>
-      <p>Conformément à l'article 5 du Règlement européen 2016/679, la collecte et le traitement des données respectent les principes suivants :</p>
-      <div class="principles">
-        <div class="principle">
-          <span class="principle-name">Licéité, loyauté, transparence</span>
-          <span class="principle-desc">Les données ne sont collectées qu'avec le consentement de l'utilisateur, qui est informé des finalités de la collecte.</span>
-        </div>
-        <div class="principle">
-          <span class="principle-name">Finalités limitées</span>
-          <span class="principle-desc">La collecte et le traitement répondent à des objectifs déterminés dans les présentes conditions.</span>
-        </div>
-        <div class="principle">
-          <span class="principle-name">Minimisation des données</span>
-          <span class="principle-desc">Seules les données nécessaires à la bonne exécution des objectifs sont collectées.</span>
-        </div>
-        <div class="principle">
-          <span class="principle-name">Conservation limitée</span>
-          <span class="principle-desc">Les données sont conservées pour une durée limitée, dont l'utilisateur est informé.</span>
-        </div>
-        <div class="principle">
-          <span class="principle-name">Intégrité et confidentialité</span>
-          <span class="principle-desc">Le responsable du traitement s'engage à garantir l'intégrité et la confidentialité des données collectées.</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- ART 3 -->
-    <div class="article" id="art3">
-      <div class="article-header">
-        <span class="article-num">03</span>
-        <h2>Données collectées et traitées</h2>
-      </div>
-
-      <h3>A. Données collectées</h3>
-      <p>Les données collectées sur <strong>apogee-societe.com</strong> sont :</p>
-      <ul class="bullet-list">
-        <li>Prénom, nom, adresse e-mail, adresse postale, numéro de téléphone, fonction, organisme.</li>
-        <li>Coordonnées bancaires (dans le cadre des paiements).</li>
-        <li>Données de connexion : adresse IP, date et heure, géolocalisation.</li>
-      </ul>
-      <p>Ces données sont collectées lors de la connexion à la plateforme, de la réservation d'un rendez-vous, ou de l'utilisation d'un formulaire de contact.</p>
-
-      <h3>Durées de conservation</h3>
-      <div class="principles">
-        <div class="principle">
-          <span class="principle-name">Données comptables</span>
-          <span class="principle-desc">10 ans</span>
-        </div>
-        <div class="principle">
-          <span class="principle-name">Documents contractuels et commerciaux</span>
-          <span class="principle-desc">3 ans</span>
-        </div>
-        <div class="principle">
-          <span class="principle-name">Cookies d'analyse</span>
-          <span class="principle-desc">13 mois</span>
-        </div>
-      </div>
-
-      <h3>B. Transmission à des tiers</h3>
-      <p>Les données à caractère personnel collectées ne sont transmises à aucun tiers, et ne sont traitées que par l'éditeur du site.</p>
-
-      <h3>C. Hébergement</h3>
-      <p>Le site est hébergé par <strong>1&1 Internet SARL</strong>, 7 place de la Gare, FR-57200 Sarreguemines , tél. <a href="tel:+33970808991">+33 9 70 80 89 91</a>. Les données sont exclusivement hébergées et traitées en France.</p>
-    </div>
-
-    <!-- ART 4 -->
-    <div class="article" id="art4">
-      <div class="article-header">
-        <span class="article-num">04</span>
-        <h2>Responsable du traitement</h2>
-      </div>
-      <h3>A. Identité</h3>
-      <p>Le responsable du traitement est <strong>Madame Fitte-Duval Gaëlle</strong>, joignable par téléphone au <a href="tel:+33766540803">+33 7 66 54 08 03</a>, du lundi au vendredi de 13h00 à 17h00.</p>
-
-      <h3>B. Obligations</h3>
-      <ul class="bullet-list">
-        <li>Protection des données collectées et absence de transmission non consentie à des tiers.</li>
-        <li>Le site dispose d'un certificat SSL garantissant la sécurité des échanges.</li>
-        <li>Notification de l'utilisateur en cas de rectification ou suppression de données.</li>
-        <li>Information de l'utilisateur en cas de compromission de l'intégrité ou de la confidentialité de ses données.</li>
-      </ul>
-    </div>
-
-    <!-- ART 5 -->
-    <div class="article" id="art5">
-      <div class="article-header">
-        <span class="article-num">05</span>
-        <h2>Droits de l'utilisateur</h2>
-      </div>
-      <p>Pour exercer ses droits, l'utilisateur adresse un e-mail au responsable du traitement en précisant l'objet de sa demande.</p>
-      <div class="rights-list">
-        <div class="right-item">
-          <span class="right-letter">a</span>
-          <p><strong>Droit d'accès, de rectification et d'effacement</strong> , L'utilisateur peut consulter, modifier ou demander la suppression de ses données par e-mail. Les demandes sont traitées sous 20 jours ouvrés.</p>
-        </div>
-        <div class="right-item">
-          <span class="right-letter">b</span>
-          <p><strong>Droit à la portabilité</strong> , L'utilisateur peut demander le transfert de ses données vers un autre service par e-mail.</p>
-        </div>
-        <div class="right-item">
-          <span class="right-letter">c</span>
-          <p><strong>Droit à la limitation et à l'opposition</strong> , L'utilisateur peut demander la limitation du traitement ou s'y opposer, sauf motif légitime et impérieux.</p>
-        </div>
-        <div class="right-item">
-          <span class="right-letter">d</span>
-          <p><strong>Droit contre les décisions automatisées</strong> , L'utilisateur ne peut faire l'objet d'une décision fondée exclusivement sur un traitement automatisé produisant des effets juridiques le concernant.</p>
-        </div>
-        <div class="right-item">
-          <span class="right-letter">e</span>
-          <p><strong>Droit sur le sort des données post-mortem</strong> , L'utilisateur peut organiser le devenir de ses données en cas de décès, conformément à la loi n°2016-1321 du 7 octobre 2016.</p>
-        </div>
-        <div class="right-item">
-          <span class="right-letter">f</span>
-          <p><strong>Droit de saisir la CNIL</strong> , En cas de non-réponse ou de litige, l'utilisateur peut saisir la <a href="http://www.cnil.fr" target="_blank">CNIL</a> ou tout juge compétent.</p>
-        </div>
-      </div>
-      <h3>Mineurs</h3>
-      <p>Seuls les mineurs de 15 ans ou plus peuvent consentir au traitement de leurs données. En dessous de cet âge, l'accord d'un représentant légal est requis.</p>
-    </div>
-
-    <!-- ART 6 -->
-    <div class="article" id="art6">
-      <div class="article-header">
-        <span class="article-num">06</span>
-        <h2>Fichiers cookies</h2>
-      </div>
-      <p>Un cookie est un fichier de moins de 4 Ko stocké sur le terminal de l'utilisateur, contenant des informations relatives à ses habitudes de navigation. Le consentement de l'utilisateur est requis pour les cookies non essentiels, et reste valide 6 mois.</p>
-      <h3>S'opposer aux cookies</h3>
-      <p>L'utilisateur peut retirer son consentement à tout moment via les paramètres de son navigateur :</p>
-      <ul class="cookies-list">
-        <li><a href="https://support.google.com/accounts/answer/61416?hl=fr" target="_blank">Chrome</a></li>
-        <li><a href="https://support.mozilla.org/fr/kb/enable-and-disable-cookies-website-preferences" target="_blank">Firefox</a></li>
-        <li><a href="https://www.apple.com/legal/privacy/fr-ww/" target="_blank">Safari</a></li>
-        <li><a href="https://support.microsoft.com/fr-fr/help/17422" target="_blank">Internet Explorer</a></li>
-        <li><a href="https://www.opera.com/help/tutorials/security/cookies/" target="_blank">Opera</a></li>
-      </ul>
-      <p>La désactivation des cookies n'empêche pas la navigation sur le site. Tout dysfonctionnement lié à cette manipulation ne saurait être imputé à l'éditeur.</p>
-    </div>
-
-    <!-- ART 7 -->
-    <div class="article" id="art7">
-      <div class="article-header">
-        <span class="article-num">07</span>
-        <h2>Modifications de la politique</h2>
-      </div>
-      <p>Cette politique peut être modifiée à tout moment pour garantir sa conformité avec le droit en vigueur. L'utilisateur est invité à la consulter régulièrement à l'adresse <a href="https://www.apogee-societe.com/politiquedeconfidentialité">apogee-societe.com/politiquedeconfidentialité</a>.</p>
-      <div class="update-badge">Dernière mise à jour <span>23 novembre 2023</span></div>
-    </div>
-
   </div>
 </div>
 
