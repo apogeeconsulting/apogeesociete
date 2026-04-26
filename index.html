@@ -42,6 +42,8 @@ h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3.5rem,6vw,6.5rem);fon
 h1 em{font-style:italic;color:var(--off)}
 .hero-sub{font-size:.85rem;color:var(--muted);line-height:1.85;font-weight:200;max-width:360px;border-left:1px solid var(--line);padding-left:1.5rem;position:relative;z-index:1}
 .hero-bottom{position:relative;z-index:1}
+.lang-btn{background:none;border:1px solid rgba(255,255,255,.2);color:var(--muted);font-family:'Jost',sans-serif;font-size:.58rem;letter-spacing:.18em;padding:5px 12px;cursor:pointer;transition:all .2s}
+.lang-btn:hover{border-color:rgba(255,255,255,.5);color:var(--white)}
 .btn-wh{display:inline-flex;align-items:center;gap:10px;background:var(--white);color:var(--black);font-family:'Jost',sans-serif;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;font-weight:400;padding:12px 28px;text-decoration:none;border:1px solid var(--white);transition:all .2s;cursor:pointer;border-radius:0}
 .btn-wh:hover{background:transparent;color:var(--white)}
 .btn-wh svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:1.5;transition:transform .2s}
@@ -219,6 +221,7 @@ h1{animation:up .8s .2s ease both}
     <li><a href="https://www.apogee-societe.com/services">Services</a></li>
     <li><a href="https://www.apogee-societe.com/àpropos">À propos</a></li>
   </ul>
+  <button class="lang-btn" id="lang-btn">EN</button>
 </nav>
 
 <!-- LAYOUT -->
@@ -402,7 +405,7 @@ h1{animation:up .8s .2s ease both}
         </div>
 
         <button type="submit" class="btn-send">
-          Envoyer
+          <span>Envoyer</span>
           <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
       </form>
@@ -417,7 +420,137 @@ h1{animation:up .8s .2s ease both}
 </div>
 
 <script>
-// ── TABS
+// ── TRADUCTION FR / EN
+const translations = {
+  fr: {
+    eyebrow: 'Recrutement & carrières',
+    h1: 'Révélez<br>votre<br><em>potentiel.</em>',
+    heroSub: 'Une structure en pleine expansion, en France et à l\'international. Votre expertise a un impact direct et mesurable.',
+    tabCandidature: 'Candidature',
+    tabInternational: 'International',
+    domaines: ['Services généraux','Administratif & RH','Comptabilité & Finance','Juridique','Commercial & Business Dev','Communication & Marketing','Candidature spontanée'],
+    badge: 'Phare',
+    intlCards: [
+      { title: 'Candidats hors de France', body: 'Basé à l\'étranger et souhaitant rejoindre Apogée en remote ou contribuer localement.' },
+      { title: 'Partenaires & ambassadeurs', body: 'Vous connaissez le tissu économique local. Représentez Apogée dans votre région.' },
+      { title: 'Porteurs de projet filiale', body: 'Développez une structure Apogée à l\'international, avec notre accompagnement.' }
+    ],
+    drawerTitle: 'Votre candidature',
+    labels: { prenom:'Prénom',nom:'Nom',email:'Email',tel:'Téléphone',domaine:'Domaine',exp:'Expérience',dispo:'Disponibilité',mode:'Mode souhaité',intl:'Basé hors de France',pays:'Pays',ville:'Ville',itype:'Type de profil',msg:'Parcours & motivations',rgpd:'J\'accepte l\'utilisation de mes données pour ma candidature —',send:'Envoyer' },
+    exp: ['Junior — moins de 2 ans','Confirmé — 2 à 5 ans','Senior — 5 à 10 ans','Expert — 10 ans et plus'],
+    dispo: ['Immédiate','Sous 1 mois','Sous 3 mois','Sous 6 mois'],
+    modes: ['Remote','Présentiel','Flexible'],
+    itypes: ['Candidat en remote depuis l\'étranger','Partenaire / ambassadeur local','Porteur de projet filiale Apogée'],
+    successTitle: 'Reçue.',
+    successBody: 'Merci pour votre intérêt.<br>Nous revenons vers vous rapidement.',
+    placeholders: { prenom:'Marie',nom:'Dupont',email:'marie@exemple.fr',tel:'+33 6 …',pays:'Ex : Australie…',ville:'Ex : Sydney',msg:'Dites-nous qui vous êtes…' },
+    confidentialite: 'confidentialité'
+  },
+  en: {
+    eyebrow: 'Recruitment & careers',
+    h1: 'Reveal<br>your<br><em>potential.</em>',
+    heroSub: 'A rapidly expanding structure, in France and internationally. Your expertise has a direct and measurable impact.',
+    tabCandidature: 'Apply',
+    tabInternational: 'International',
+    domaines: ['General Services','Administrative & HR','Accounting & Finance','Legal','Sales & Business Dev','Communication & Marketing','Open application'],
+    badge: 'Core',
+    intlCards: [
+      { title: 'Candidates outside France', body: 'Based abroad and looking to join Apogée remotely or contribute locally.' },
+      { title: 'Partners & ambassadors', body: 'You know the local market. Represent Apogée in your region.' },
+      { title: 'Branch project holders', body: 'Develop an Apogée structure internationally, with our full support.' }
+    ],
+    drawerTitle: 'Your application',
+    labels: { prenom:'First name',nom:'Last name',email:'Email',tel:'Phone',domaine:'Field',exp:'Experience',dispo:'Availability',mode:'Preferred mode',intl:'Based outside France',pays:'Country',ville:'City',itype:'Profile type',msg:'Background & motivation',rgpd:'I agree to the use of my data for this application —',send:'Send' },
+    exp: ['Junior — less than 2 years','Mid-level — 2 to 5 years','Senior — 5 to 10 years','Expert — 10+ years'],
+    dispo: ['Immediately','Within 1 month','Within 3 months','Within 6 months'],
+    modes: ['Remote','On-site','Flexible'],
+    itypes: ['Remote candidate from abroad','Local partner / ambassador','Apogée branch project holder'],
+    successTitle: 'Received.',
+    successBody: 'Thank you for your interest.<br>We\'ll be in touch shortly.',
+    placeholders: { prenom:'Marie',nom:'Dupont',email:'marie@example.com',tel:'+61 4 …',pays:'e.g. Australia…',ville:'e.g. Sydney',msg:'Tell us about yourself…' },
+    confidentialite: 'privacy policy'
+  }
+};
+
+let currentLang = 'fr';
+
+function applyLang(lang) {
+  const t = translations[lang];
+  currentLang = lang;
+  document.getElementById('lang-btn').textContent = lang === 'fr' ? 'EN' : 'FR';
+  document.querySelector('.eyebrow').textContent = t.eyebrow;
+  document.querySelector('h1').innerHTML = t.h1;
+  document.querySelector('.hero-sub').textContent = t.heroSub;
+  document.querySelectorAll('.tab')[0].textContent = t.tabCandidature;
+  document.querySelectorAll('.tab')[1].textContent = t.tabInternational;
+
+  // domaines
+  const rows = document.querySelectorAll('.dom-row');
+  rows.forEach((row, i) => {
+    row.dataset.domaine = t.domaines[i];
+    const nameEl = row.querySelector('.dr-name');
+    nameEl.childNodes[0].textContent = t.domaines[i];
+    const badge = row.querySelector('.dr-badge');
+    if(badge) badge.textContent = t.badge;
+  });
+
+  // cartes intl
+  const cards = document.querySelectorAll('.intl-card');
+  cards.forEach((card, i) => {
+    card.dataset.intl = t.itypes[i];
+    card.querySelector('.ic-title').textContent = t.intlCards[i].title;
+    card.querySelector('.ic-body').textContent = t.intlCards[i].body;
+  });
+
+  // drawer
+  document.querySelector('.drawer-title').textContent = t.drawerTitle;
+
+  // labels
+  document.querySelector('label[for=prenom]').textContent = t.labels.prenom + ' *';
+  document.querySelector('label[for=nom]').textContent = t.labels.nom + ' *';
+  document.querySelector('label[for=email]').textContent = t.labels.email + ' *';
+  document.querySelector('label[for=tel]').textContent = t.labels.tel;
+  document.querySelector('label[for=domaine]').textContent = t.labels.domaine + ' *';
+  document.querySelector('label[for=exp]').textContent = t.labels.exp;
+  document.querySelector('label[for=dispo]').textContent = t.labels.dispo;
+  document.querySelector('.itoggle-label').textContent = t.labels.intl;
+  document.querySelector('label[for=pays]').textContent = t.labels.pays + ' *';
+  document.querySelector('label[for=ville]').textContent = t.labels.ville;
+  document.querySelector('label[for=itype]').textContent = t.labels.itype + ' *';
+  document.querySelector('label[for=msg]').textContent = t.labels.msg + ' *';
+  document.querySelector('.btn-send span').textContent = t.labels.send;
+  document.querySelector('.consent span').innerHTML = t.labels.rgpd + ' <a href="https://www.apogee-societe.com/politiquedeconfidentialité" target="_blank">'+t.confidentialite+'</a>.';
+
+  // placeholders
+  document.getElementById('prenom').placeholder = t.placeholders.prenom;
+  document.getElementById('nom').placeholder = t.placeholders.nom;
+  document.getElementById('email').placeholder = t.placeholders.email;
+  document.getElementById('tel').placeholder = t.placeholders.tel;
+  document.getElementById('pays').placeholder = t.placeholders.pays;
+  document.getElementById('ville').placeholder = t.placeholders.ville;
+  document.getElementById('msg').placeholder = t.placeholders.msg;
+
+  // selects
+  const modeInputs = document.querySelectorAll('.mopt .mbtn');
+  modeInputs.forEach((btn, i) => btn.textContent = t.modes[i]);
+
+  const expSel = document.getElementById('exp');
+  Array.from(expSel.options).forEach((o, i) => { if(i > 0) o.textContent = t.exp[i-1]; });
+
+  const dispoSel = document.getElementById('dispo');
+  Array.from(dispoSel.options).forEach((o, i) => { if(i > 0) o.textContent = t.dispo[i-1]; });
+
+  const itypeSel = document.getElementById('itype');
+  Array.from(itypeSel.options).forEach((o, i) => { if(i > 0) o.textContent = t.itypes[i-1]; });
+
+  // success
+  document.querySelector('.success h3').textContent = t.successTitle;
+  document.querySelector('.success p').innerHTML = t.successBody;
+}
+
+document.getElementById('lang-btn').addEventListener('click', () => {
+  applyLang(currentLang === 'fr' ? 'en' : 'fr');
+});
 function switchTab(name){
   document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab===name));
   document.querySelectorAll('.panel').forEach(p => p.classList.toggle('active', p.id==='panel-'+name));
