@@ -36,7 +36,7 @@ nav{position:fixed;top:28px;left:0;right:0;z-index:300;display:flex;align-items:
 
 /* HERO gauche */
 .hero{border-right:1px solid var(--line);padding:4rem 3rem;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
-.wm{position:absolute;bottom:2rem;left:0;right:0;font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,8vw,7rem);font-weight:300;color:rgba(255,255,255,.06);line-height:1;pointer-events:none;user-select:none;white-space:nowrap;letter-spacing:.15em;text-align:center}
+.wm{position:absolute;bottom:2rem;left:0;right:0;font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,8vw,7rem);font-weight:300;color:rgba(255,255,255,.12);line-height:1;pointer-events:none;user-select:none;white-space:nowrap;letter-spacing:.15em;text-align:center}
 .eyebrow{font-size:.58rem;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);margin-bottom:1.5rem;display:block}
 h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3.5rem,6vw,6.5rem);font-weight:300;line-height:.9;letter-spacing:-.02em;position:relative;z-index:1}
 h1 em{font-style:italic;color:var(--off)}
@@ -631,38 +631,49 @@ itoggle.addEventListener('click', function(){
 });
 
 // ── SUBMIT
-document.getElementById('form').addEventListener('submit', function(e){
+document.getElementById('form').addEventListener('submit', async function(e){
   e.preventDefault();
-  const d  = new FormData(this);
-  const g  = k => (d.get(k)||'Non renseigné').trim();
+  const d = new FormData(this);
+  const g = k => (d.get(k)||'Non renseigné').trim();
   const il = intlOpen
     ? 'Pays : '+g('pays')+' / Ville : '+g('ville')+' / Profil : '+g('itype')
     : 'Basé en France';
-  const subject = 'Candidature - '+g('prenom')+' '+g('nom')+' - '+g('domaine');
-  const body = [
-    'CANDIDATURE - APOGEE SOCIETE',
-    '---',
-    'Nom : '+g('prenom')+' '+g('nom'),
-    'Email : '+g('email'),
-    'Tel : '+g('tel'),
-    '---',
-    'Domaine : '+g('domaine'),
-    'Experience : '+g('exp'),
-    'Disponibilite : '+g('dispo'),
-    'Mode : '+g('mode'),
-    'Localisation : '+il,
-    '---',
-    g('msg'),
-    '---',
-    'apogee-societe.com/recrutement'
-  ].join('%0D%0A');
-  const a = document.createElement('a');
-  a.href = 'mailto:contact@apogee-societe.fr?subject='+encodeURIComponent(subject)+'&body='+body;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  this.style.display = 'none';
-  document.getElementById('success').style.display = 'block';
+
+  const btn = this.querySelector('.btn-send');
+  btn.style.opacity = '.5';
+  btn.style.pointerEvents = 'none';
+
+  try {
+    const res = await fetch('https://formspree.io/f/xeevdylb', {
+      method: 'POST',
+      headers: {'Accept': 'application/json'},
+      body: JSON.stringify({
+        Nom: g('prenom') + ' ' + g('nom'),
+        Email: g('email'),
+        Telephone: g('tel'),
+        Domaine: g('domaine'),
+        Experience: g('exp'),
+        Disponibilite: g('dispo'),
+        Mode: g('mode'),
+        Localisation: il,
+        Message: g('msg'),
+        _subject: 'Candidature - ' + g('prenom') + ' ' + g('nom') + ' - ' + g('domaine')
+      })
+    });
+
+    if(res.ok){
+      this.style.display = 'none';
+      document.getElementById('success').style.display = 'block';
+    } else {
+      btn.style.opacity = '1';
+      btn.style.pointerEvents = 'auto';
+      alert('Une erreur est survenue, veuillez réessayer.');
+    }
+  } catch(err){
+    btn.style.opacity = '1';
+    btn.style.pointerEvents = 'auto';
+    alert('Une erreur est survenue, veuillez réessayer.');
+  }
 });
 </script>
 </body>
